@@ -1,0 +1,79 @@
+{
+  "griffinoPluginManifestVersion": "1.0",
+  "pluginSchemaType": "general_purpose_plugin",
+
+  "id": "com.morcherlf.deepseek",
+  "version": "0.1.0",
+  "releaseDate": "2026-02-25",
+
+  "name": {
+    "default": "DeepSeek AI",
+    "_i18n_key": "plugin.name"
+  },
+  "description": {
+    "default": "Provides AI chat model capability via the DeepSeek official API.",
+    "_i18n_key": "plugin.description"
+  },
+  "author": "MorCherlf",
+  "site": "https://github.com/MorCherlf/Griffino-DeepSeek-Plugin",
+  "icon": "assets/icon.png",
+  "license": "MIT",
+
+  "internationalization": {
+    "defaultLanguage": "zh-CN",
+    "supportedLanguages": ["zh-CN", "en-US"],
+    "localizationFiles": {
+      "zh-CN": "i18n/zh_CN.json",
+      "en-US": "i18n/en_US.json"
+    }
+  },
+
+  "dependencies": {
+    "mainSystemVersion": ">=0.1.0",
+    "requiredPlugins": []
+  },
+
+  "permissionsRequested": [
+    {
+      "name": "network.outbound.internet",
+      "description": {
+        "default": "Requires internet access to call the DeepSeek API.",
+        "_i18n_key": "permission.desc.network_outbound"
+      },
+      "optional": false
+    }
+  ],
+
+  "configurationFiles": {
+    "bootConfig": "config.boot.json",
+    "runtimeBoot": "plugin.boot.yml",
+    "userConfig":  "config.user.json"
+  },
+
+  "capabilities": [
+    {
+      "id": "ai_chat_model",
+      "role": "provider",
+      "name": {
+        "default": "AI Chat Model",
+        "_i18n_key": "capability.ai_chat_model.name"
+      },
+      "description": {
+        "default": "Provides AI chat completion via DeepSeek API. Accepts a conversation history and returns a model response.",
+        "_i18n_key": "capability.ai_chat_model.description"
+      },
+      "type": "ai.chat.model",
+      "standardInterfaceRef": "griffino.interfaces.ai.chat@1.0.0",
+      "entryPoint": {
+        "type": "rabbitmq_topic",
+        "details": {
+          "requestTopicPattern": "invoke.com.morcherlf.deepseek.ai_chat_model.v1",
+          "responseTopicPatternHint": "event.com.morcherlf.deepseek.ai_chat_model_result.v1"
+        }
+      },
+      "inputSchemaRef": "schemas/ai_chat_request_v1.json",
+      "outputSchemaRef": "schemas/ai_chat_response_v1.json",
+      "defaultTimeoutMilliseconds": 60000
+    }
+  ]
+}

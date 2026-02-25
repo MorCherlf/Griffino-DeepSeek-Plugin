@@ -1,0 +1,67 @@
+{
+  "$schema": "./config.boot.schema.json",
+  "GriffinoPluginConfigVersion": "1.0",
+  "pluginId": "ccom.morcherlf.deepseek",
+  "name": "DeepSeek AI",
+  "tutorial": "https://platform.deepseek.com/api-docs",
+  "site": "https://github.com/MorCherlf/Griffino-DeepSeek-Plugin",
+  "services": [
+    {
+      "id": "deepseek-service",
+      "configs": [
+        {
+          "key": "DEEPSEEK_API_KEY",
+          "name": "DeepSeek API Key",
+          "description": "DeepSeek 平台的 API Key，在 https://platform.deepseek.com 获取。",
+          "type": "password",
+          "optional": false,
+          "group": "API 配置"
+        },
+        {
+          "key": "DEEPSEEK_MODEL",
+          "name": "默认模型",
+          "description": "使用的 DeepSeek 模型。",
+          "type": "options",
+          "optional": false,
+          "default": "deepseek-chat",
+          "values": [
+            { "value": "deepseek-chat",     "display": "DeepSeek-V3 (推荐)" },
+            { "value": "deepseek-reasoner", "display": "DeepSeek-R1 (推理增强)" }
+          ],
+          "group": "API 配置"
+        },
+        {
+          "key": "DEEPSEEK_BASE_URL",
+          "name": "API Base URL",
+          "description": "DeepSeek API 地址，使用代理或兼容服务时修改。",
+          "type": "string",
+          "optional": true,
+          "default": "https://api.deepseek.com",
+          "group": "API 配置"
+        },
+        {
+          "key": "MAX_TOKENS",
+          "name": "最大输出 Token 数",
+          "description": "单次对话最大输出 token 数量。",
+          "type": "int",
+          "optional": true,
+          "default": 4096,
+          "validation": {
+            "minimum": 256,
+            "maximum": 8192
+          },
+          "group": "模型参数"
+        },
+        {
+          "key": "SYSTEM_PROMPT",
+          "name": "系统级 System Prompt",
+          "description": "全局 System Prompt，对所有用户生效。用户的个人 System Prompt 会附加在此之后。",
+          "type": "string",
+          "optional": true,
+          "default": "You are a helpful assistant.",
+          "group": "模型参数"
+        }
+      ]
+    }
+  ]
+}

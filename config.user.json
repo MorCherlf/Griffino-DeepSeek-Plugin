@@ -1,0 +1,38 @@
+{
+  "GriffinoPluginConfigVersion": "1.0",
+  "pluginId": "com.morcherlf.deepseek",
+  "configs": [
+    {
+      "key": "USER_SYSTEM_PROMPT",
+      "name": "个人 System Prompt",
+      "description": "附加到全局 System Prompt 之后，用于个性化 AI 行为。",
+      "type": "string",
+      "optional": true,
+      "default": "",
+      "group": "个性化设置"
+    },
+    {
+      "key": "TEMPERATURE",
+      "name": "Temperature",
+      "description": "控制回复的随机性，越高越有创意，越低越保守。范围 0.0 ~ 2.0。",
+      "type": "float",
+      "optional": true,
+      "default": "1.0",
+      "group": "个性化设置"
+    },
+    {
+      "key": "REPLY_LANGUAGE",
+      "name": "回复语言",
+      "description": "AI 默认使用的回复语言。",
+      "type": "options",
+      "optional": true,
+      "default": "auto",
+      "values": [
+        { "value": "auto",  "display": "自动（跟随用户输入语言）" },
+        { "value": "zh-CN", "display": "简体中文" },
+        { "value": "en-US", "display": "English" }
+      ],
+      "group": "个性化设置"
+    }
+  ]
+}

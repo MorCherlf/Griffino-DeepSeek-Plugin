@@ -1,7 +1,7 @@
 {
   "$schema": "./config.boot.schema.json",
   "GriffinoPluginConfigVersion": "1.0",
-  "pluginId": "ccom.morcherlf.deepseek",
+  "pluginId": "com.morcherlf.deepseek",
   "name": "DeepSeek AI",
   "tutorial": "https://platform.deepseek.com/api-docs",
   "site": "https://github.com/MorCherlf/Griffino-DeepSeek-Plugin",
